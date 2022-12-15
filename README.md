@@ -215,6 +215,7 @@ aggregate(all2021$ride_length ~ all2021$member_casual + all2021$day_of_week, FUN
 ```
 
 **Analyze ridership data by type and weekday**
+
 ```{r eval=FALSE}
 all2021 %>% 
    group_by(member_casual, day-of_week) %>%  #groups by user type and weekday
@@ -236,16 +237,18 @@ all2021 %>%
   arrange(member_casual, day_of_week) %>%
   ggplot(aes(x = day_of_week, y = number_of_rides, fill = member_casual)) + geom_col(position = "dodge") +
   labs(x='Day of Week', y='Total Number of Rides', title='Rides per Day of Week', fill = 'User type') +
-  scale_y_continuous(breaks = c(200000, 300000, 4000000), labels = c("200K", "300K", "400K"))
-  
-```
-![](Rider type.png)
+  scale_y_continuous(breaks = c(200000, 300000, 4000000), labels = c("200K", "300K", "400K"))  
+  ````
+  ![](https://github.com/rosalbamartin/Rosalba_Portfolio/blob/main/Rider%20type.png)
+
 
 Casual riders used to ride more during the weekends with a preference for Saturdays. Members use the bike share service more during weekdays with a more stable use throughout the week.
 
 **AVERAGE DURATION**
 
 Let's create a visualization for average duration
+
+```{r}
 
 all2021 %>% 
   group_by(member_casual, day_of_week) %>% 
@@ -255,7 +258,9 @@ all2021 %>%
   ggplot(aes(x = day_of_week, y = average_duration, fill = member_casual)) +
   geom_col(position = "dodge")
   
-  ![](AVG ride length by DOW.png)
+  ````
+  
+  ![](https://github.com/rosalbamartin/Rosalba_Portfolio/blob/main/AVG%20Ride%20length%20by%20DOW.png)
   
   Casual riders have a longer average ride length of 20+ minutes during the week,  having longer rides during the weekends. Members show a steadier usage of the service throughout the week.
 
@@ -272,7 +277,7 @@ all2021 %>%
 
 ```
 
-![](Rides per Month.png)
+![](https://github.com/rosalbamartin/Rosalba_Portfolio/blob/main/Rides%20per%20Month.png)
 
 Summer is the favorite season for both types of users, however the trend is more relevant for casual riders. Members use the service more during the summer and also during early autumn months. Then their activity decreases gradually during the cold months.  Casual users have very little activity during the winter months. 
 
@@ -289,12 +294,12 @@ all2021 %>%
    scale_y_continuous(breaks = c(500000, 1000000, 1500000, 2000000), labels = c("500K", "1MM", "1.5MM", "2MM"))
 
 ````
-![](Popular Bike type.png)
+![](https://github.com/rosalbamartin/Rosalba_Portfolio/blob/main/Popular%20Bike%20Type.png)
 
 The preferred type of bike for both users is the Classic bike followed by the electric bike. Docked bikes are the least preferred for both users, especially for members.  
 
 **Rides  by Hour**
-
+```{r}
 all2021 %>%
   group_by(member_casual, hour)%>%
   summarise(number_of_rides=n(), average_duration=mean(ride_length))%>%
@@ -303,8 +308,9 @@ all2021 %>%
   geom_col(position = "dodge")+
   labs(x='hour', y='number of Rides', title='Rides by Hours', fill = 'User type') +
    scale_y_continuous(breaks = c(50000, 100000, 150000, 200000, 250000), labels = c("50K","100K","150K","200K","250K"))
+   ````
 
-![](Rides by Hour.png)
+![](https://github.com/rosalbamartin/Rosalba_Portfolio/blob/main/Rides%20by%20Hour.png)
 
 The busiest time of the day for both users is the afternoon. Members' peak hours are from 7am to 8am and from 4pm to 6pm suggesting  they use the bike to get to work.
  
